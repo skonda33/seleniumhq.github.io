@@ -1,0 +1,11 @@
+
+daily quick reference :-
+quick reference - https://www.w3schools.com/java/java_examples.asp
+
+String[] a = {a,b,c}
+sout(a[0]
+
+daily program practice:-
+https://www.javatpoint.com/java-programs
+
+

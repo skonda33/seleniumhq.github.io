@@ -1,0 +1,2 @@
+1) waits - implicit,explicit,fluent
+FluentWait,WebDriverWait,implicitlyWait

@@ -1,0 +1,145 @@
+mvn clean install -D skipTests
+mvn test -Dtest=MathUtilsTest run sigle java file  , below "MathUtilsTest" is class files
+mvn test -Dtest="junit5.**"    run all tests in a module
+
+cmd --% /c del /S ._*    ---delete all files with ._*
+del /s /a:H ._*.*    -delete all didden files with ._*.*
+
+gradle version 8.5 set this to system settings
+in idea set patht this version
+
+java version 17 set this to system settings
+in idea set this java
+
+
+./gradlew clean  - to clean build files
+./gradlew build - to build all modules
+./gradlew test - to test all modules
+
+./gradlew :documentation:clean to build single module
+./gradlew :documentation:build to build single module
+./gradlew :documentation:test to build single module
+
+
+./gradlew.bat :documentation:spotlessApply   - to fix the formatting style
+
+
+./gradlew test - to test all
+./gradlew test --tests
+ ./gradlew test  --tests "example.sivajunit5"
+ ./gradlew :documentation:test
+
+ctrl +W
+shift f6
+alt rtarrow left arrow
+ctrl alt rta lftar
+ctrl n
+ctrl alt o i l
+
+display name for class and methods
+@DisplayName("Custom test name containing spaces")
+
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+
+@IndicativeSentencesGeneration(separator = " -> ", generator = ReplaceUnderscores.class)
+
+
+ @BeforeAll should be static because it dosent need instance
+ but if you set @testinstance life cycle to class level then you dont need static
+
+ each test method creates separate instance with before each and after each
+
+ @Displayname to show the display name instead of method name
+
+
+Assertions:-
+
+assertEquals(2, calculator.add(1, 1));
+assertEquals(4, calculator.multiply(2, 2), "The optional failure message is now the last parameter");
+assertTrue('a' < 'b', () -> "Assertion messages can be lazily evaluated -- " + "to avoid constructing complex messages unnecessarily.");
+
+assertAll("person",
+() -> assertEquals("Jane", person.getFirstName()),
+() -> assertEquals("Doe", person.getLastName())
+
+
+ @Disabled - when you wnat to skip , or use this in test driven development
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
+ @Test
+ @BeforeTest
+ @AfterTest
+
+ lamda usage so that stings are not loaded to save memory.
+  assertEquals(expec,actual,()->"adding positve"+expec + "and"+actual +" numbers not working");
+
+@RepeatedTest
+
+    @RepeatedTest(12)
+    @DisplayName("area of a circle with radius")
+    void areaRepition(RepetitionInfo info) {
+
+
+    }
+
+
+Parameterized Tests:-
+
+@ParameterizedTest
+
+@ParameterizedTest
+ @ValueSource(strings = { "racecar", "radar", "able was I ere I saw elba" }) void palindromes(String candidate) { assertTrue(StringUtils.isPalindrome(candidate)); }
+
+Dynamic Tests:-
+
+@Test annotated tests are static in nature , means their behavior is decided at compile time and wont change at runtime , Assumptions provide a basic form of dynamic behavior but are intentionally rather limited in their expressiveness.
+This new kind of test is adynamic testwhich is generated at runtime by a factory method that is annotated with@TestFactory.
+
+@TestFactorymethods must not beprivateorstatic
+
+
+
+
+
+
+Timeouts:-
+The@Timeoutannotation allows one to declare that a test, test factory, test template, or lifecycle method should fail if its execution time exceeds a given duration. The time unit for the duration defaults to seconds but is configurable.
+@Timeout(5)
+@Timeout(value = 500, unit = TimeUnit.MILLISECONDS)
+@Timeout(value = 500, unit = TimeUnit.MILLISECONDS, threadMode = ThreadMode.SEPARATE_THREAD)
+
+
+
+
+Synchronization:-
+Running tests in isolation
+If most of your test classes can be run in parallel without any synchronization but you have some test classes that need to run in isolation, you can mark the latter with the@Isolatedannotation.
+
+In addition to controlling the execution mode using the@Executionannotation, JUnit Jupiter provides another annotation-based declarative synchronization mechanism. The@ResourceLockannotation allows you to declare that a test class or method uses a specific shared resource that requires synchronized access to ensure reliable test execution.
+
+
+Parallel Execution:-
+
+Configuration parameters to execute top-level classes in parallel but methods in same thread
+junit.jupiter.execution.parallel.enabled = true
+junit.jupiter.execution.parallel.mode.default = same_thread
+junit.jupiter.execution.parallel.mode.classes.default = concurrent
+The opposite combination will run all methods within one class in parallel, but top-level classes will run sequentially:
+Configuration parameters to execute top-level classes sequentially but their methods in parallel
+junit.jupiter.execution.parallel.enabled = true
+junit.jupiter.execution.parallel.mode.default = concurrent
+junit.jupiter.execution.parallel.mode.classes.default = same_thread
+
+
+To select a strategy, set thejunit.jupiter.execution.parallel.config.strategyconfiguration parameter to one of the following options.
+dynamic
+Computes the desired parallelism based on the number of available processors/cores multiplied by thejunit.jupiter.execution.parallel.config.dynamic.factorconfiguration parameter (defaults to1).
+ The optionaljunit.jupiter.execution.parallel.config.dynamic.max-pool-size-factorconfiguration parameter can be used to limit the maximum number of threads.
+fixed
+Uses the mandatoryjunit.jupiter.execution.parallel.config.fixed.parallelismconfiguration parameter as the desired parallelism. The optionaljunit.jupiter.execution.parallel.config.fixed.max-pool-sizeconfiguration parameter can be used to limit the maximum number of threads.
+
+
+
+
+

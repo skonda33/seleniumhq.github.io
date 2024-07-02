@@ -1,0 +1,7 @@
+let var const
+if , for , while , 
+break , continue
+Arrays :- crud
+let a = [1,2,3];
+a.push, a.pop, a.
+shift,unshift,

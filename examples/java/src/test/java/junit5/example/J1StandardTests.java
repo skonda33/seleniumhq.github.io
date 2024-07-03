@@ -8,7 +8,7 @@
  * https://www.eclipse.org/legal/epl-v20.html
  */
 
-package src.test.java.junit5.example;
+package junit5.example;
 
 // tag::user_guide[]
 
